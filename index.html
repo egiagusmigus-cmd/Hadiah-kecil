@@ -139,32 +139,4 @@ $_('btnMusic').addEventListener('click',function(){if(musicPlaying){audioBg.paus
 function playSound(id){var s=$_(id);if(s){s.pause();s.currentTime=0;s.play().catch(function(){});}}
 function typeWriter(el,text,speed){speed=speed||50;var i=0;el.innerHTML='';function type(){if(i<text.length){el.innerHTML+=text.charAt(i);i++;setTimeout(type,speed);}}type();}
 function confetti(count){count=count||40;playSound('sfxSuccess');var colors=['#ff6b9d','#ffb7c5','#ffd1dc','#f5e1c0','#fff'];for(var i=0;i<count;i++){var c=document.createElement('div');c.className='confetti-piece';c.style.left=Math.random()*100+'%';c.style.top=-(Math.random()*20+5)+'px';c.style.width=(Math.random()*8+4)+'px';c.style.height=(Math.random()*8+4)+'px';c.style.background=colors[Math.floor(Math.random()*colors.length)];c.style.animationDuration=(Math.random()*2+2)+'s';document.body.appendChild(c);setTimeout(function(){c.remove();},3000);}}
-function hearts(count){count=count||15;var hList=['❤️','💕','💗','💖','💝'];for(var i=0;i<count;i++){var h=document.createElement('div');h.className='heart-fly';h.textContent=hList[Math.floor(Math.random()*hList.length)];h.style.left=Math.random()*100+'%';h.style.bottom='0';h.style.fontSize=(Math.random()*18+14)+'px';h.style.animationDuration=(Math.random()*1.5+1.5)+'s';document.body.appendChild(h);setTimeout(function(){h.remove();},2500);}}
-function goTo(pageId){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('show');});$_(pageId).classList.add('show');window.scrollTo({top:0,behavior:'smooth'});}
-
-function launchFireworks(){var colors=['#ff6b9d','#ffb7c5','#ffd1dc','#f5e1c0','#fff','#8b5cf6'];for(var f=0;f<5;f++){setTimeout(function(){var container=document.createElement('div');container.className='firework';container.style.left=Math.random()*80+10+'%';container.style.top=Math.random()*50+10+'%';for(var p=0;p<25;p++){var particle=document.createElement('div');particle.className='firework-particle';particle.style.background=colors[Math.floor(Math.random()*colors.length)];particle.style.setProperty('--x',(Math.random()*180-90)+'px');particle.style.setProperty('--y',(Math.random()*180-90)+'px');particle.style.animationDelay=Math.random()*0.3+'s';container.appendChild(particle);}document.body.appendChild(container);setTimeout(function(){container.remove();},2000);},f*500);}}
-
-function checkPassword(){var input=$_('passwordInput').value.trim();if(input===PASSWORD){$_('passwordError').style.display='none';$_('passwordSuccess').style.display='block';$_('btnLanjut').style.display='inline-block';$_('btnCheckPassword').style.display='none';$_('passwordInput').disabled=true;playSound('sfxSuccess');confetti(40);hearts(20);}else{$_('passwordError').style.display='block';$_('passwordInput').value='';$_('passwordInput').focus();setTimeout(function(){$_('passwordError').style.display='none';},2000);}}
-$_('btnCheckPassword').addEventListener('click',checkPassword);
-$_('passwordInput').addEventListener('keypress',function(e){if(e.key==='Enter'){e.preventDefault();checkPassword();}});
-$_('btnLanjut').addEventListener('click',function(){goTo('page1');});
-
-$_('envelopeNew').addEventListener('click',function(){this.classList.add('open');playSound('sfxEnvelope');confetti(40);hearts(20);setTimeout(function(){goTo('page2');confetti(50);hearts(25);},800);});
-
-var candles=document.querySelectorAll('.candle-fire');
-candles.forEach(function(candle){candle.addEventListener('click',function(e){this.classList.add('blown');playSound('sfxBlow');var smoke=document.createElement('span');smoke.className='smoke-effect';smoke.textContent='💨';smoke.style.left=e.clientX-15+'px';smoke.style.top=e.clientY-20+'px';document.body.appendChild(smoke);setTimeout(function(){smoke.remove();},1200);var allBlown=true;candles.forEach(function(c){if(!c.classList.contains('blown'))allBlown=false;});if(allBlown){confetti(60);hearts(30);}});});
-$_('btnNext2').addEventListener('click',function(){goTo('page3');});
-
-$_('btnMakeWish').addEventListener('click',function(){var wish=$_('wishInput').value.trim();if(!wish){alert('Tulis wish dulu dong! 😅 gimana sih 😑');return;}userWish=wish;$_('wishStatus').style.display='block';confetti(40);hearts(20);});
-$_('btnNext3').addEventListener('click',function(){goTo('page4');});
-
-var jokeBoxes=document.querySelectorAll('.joke-box');
-jokeBoxes.forEach(function(box){box.addEventListener('click',function(){if(!box.classList.contains('counted')){box.classList.add('counted');jokesClicked++;}});});
-$_('btnNext4').addEventListener('click',function(){if(jokesClicked===0){setTimeout(function(){$_('guiltPopup').classList.add('show');},400);return;}goTo('page5');typeWriter($_('letterContent'),'Gila udah 14 tahun aja nich....\n\n Selamat ulang tahun yaa Selamat bertambah umur, semoga bertambah juga rezeki, kebahagiaan, dan semoga chat kamu nggak cuma isinya notifikasi grup,hehe 😅. sehat sehat ya panjang umur dan pls jangan mati dulu 🙏\n\nKalo gw ada salah maafin yah biar gada dendam di hari yang spesial ini sorry mungkin ini gak sesuai ekspektasi lu mungkin ini gak sebagus punya orang orang kalo gak suka bilang aja yaa');});
-$_('btnCloseGuilt').addEventListener('click',function(){$_('guiltPopup').classList.remove('show');});
-
-$_('btnNext5').addEventListener('click',function(){goTo('page6');if(userWish){$_('wishDisplay').style.display='block';$_('wishDisplayText').textContent=userWish;}confetti(80);hearts(40);setTimeout(function(){launchFireworks();},300);});
-$_('btnProof').addEventListener('click',function(){$_('proofDetail').classList.toggle('show');});
-</script>
-</body>
-</html>
+function hearts(count){count=count||15;var hList=['❤️','💕','💗','💖','💝'];for(var i=0;i<count;i++){var h=document.createElement('div');h.className='heart-fly';h.textContent=hList[Math.flo
